@@ -14,7 +14,12 @@ router.get('/prof', (req, res) => {
         return res.status(400).send('URL parameter is required');
     }
 
+    const userAgent = 'Mozilla 5.1';
+
     request.post(`${url}/getGJUsers20.php`, {
+        headers: {
+            'User-Agent': userAgent
+        },
         form: {
             gameVersion: 21,
             binaryVersion: 35,
@@ -57,6 +62,9 @@ router.get('/prof', (req, res) => {
         };
 
         request.post(`${url}/getGJUserInfo20.php`, {
+            headers: {
+                'User-Agent': userAgent
+            },
             form: {
                 targetAccountID: userData[16],
                 gjp: "gjp" //cvolton why? lmao
@@ -120,7 +128,7 @@ router.get('/prof', (req, res) => {
                 },
                 accountID: data['accountID'],
                 playerID: data['playerID']
-                
+
             };
 
             if (role) {
